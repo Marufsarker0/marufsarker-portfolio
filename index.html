@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Maruf Sarker - Portfolio</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2563eb; /* Blue */
+            --bg-color: #0f172a;      /* Dark Blue/Black */
+            --card-bg: #1e293b;       /* Lighter Dark */
+            --text-color: #f8fafc;    /* White/Light Gray */
+            --text-muted: #94a3b8;    /* Gray */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar Style */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(15, 23, 42, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section Style */
+        header {
+            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* Dark Overlay Style */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(15, 23, 42, 0.85);
+            z-index: 1;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Profile Picture Style */
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+            background-color: #1e293b;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header span {
+            color: var(--primary-color);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #e2e8f0;
+            margin-bottom: 25px;
+            max-width: 600px;
+        }
+
+        /* Social Icons Style */
+        .social-icons {
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Buttons Style */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px;
+            transition: 0.3s;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #1d4ed8;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* General Section Style */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Me Style */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+
+        /* Cards (Used for Education, Experience, Certs) */
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            border: 1px solid #334155;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .card h4 {
+            font-size: 1rem;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: #334155;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            color: #94a3b8;
+        }
+
+        /* Skills Section Style */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background-color: #334155;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            border: 1px solid #475569;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Projects Section Style */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-links {
+            margin-top: 20px;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            margin-right: 15px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section Style */
+        .contact-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: var(--text-color);
+        }
+
+        .contact-info i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        /* Footer Style */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #020617;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            section { padding: 60px 5%; }
+            .nav-links { display: none; } 
+            .btn { width: 100%; margin: 5px 0; }
+            .profile-pic { width: 140px; height: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Maruf.Dev</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#certifications">Certificates</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home">
+        
+        <!-- Profile Picture: Replace 'src' with your image file name (e.g., me.jpg) -->
+        <img src="Maruf.jpg" alt="Maruf Sarker" class="profile-pic">
+
+        <h1>Hi, I'm <span>Md. Maruf Sarker</span></h1>
+        <p>CSE Student | Aspiring Software Engineer</p>
+
+        <!-- Social Links: Replace href="#" with your actual profile links -->
+        <div class="social-icons">
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <div>
+            <a href="#contact" class="btn">Contact Me</a>
+            <!-- Update this link to your actual PDF Resume -->
+            <a href="#" class="btn btn-outline">Download CV</a>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>
+                Hello! I am Md. Maruf Sarker, a Computer Science and Engineering student at Southeast University. 
+                I am passionate about technology and coding. My goal is to become a skilled Software Engineer who can solve real-world problems through innovative solutions.
+                Currently, I am focusing on Web Development and improving my problem-solving skills in C++ and Python.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <!-- Add your experience cards here -->
+            <div class="card">
+                <span class="date-badge">Jan 2024 - Present</span>
+                <h3>Web Development Intern</h3>
+                <h4>Tech Start-up (Example)</h4>
+                <p>Learning front-end development and assisting in UI/UX design tasks.</p>
+            </div>
+            <!-- Add another experience card -->
+            <div class="card">
+                <span class="date-badge">2023</span>
+                <h3>Volunteer / Team Member</h3>
+                <h4>University Tech Club</h4>
+                <p>Organized coding workshops and hackathons for junior students.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            <div class="card">
+                <h3>BSc in CSE</h3>
+                <h4>Southeast University</h4>
+                <p>Status: Currently Studying</p>
+                <p><i class="fas fa-university"></i> Dhaka, Bangladesh</p>
+            </div>
+
+            <div class="card">
+                <h3>Higher Secondary (HSC)</h3>
+                <h4>Tejgaon College, Dhaka</h4>
+                <p>GPA: 4.33</p>
+                <p><i class="fas fa-university"></i> Science Group</p>
+            </div>
+
+            <div class="card">
+                <h3>Secondary (SSC)</h3>
+                <h4>Gov. Mohammadpur Model School & College</h4>
+                <p>GPA: 4.33</p>
+                <p><i class="fas fa-school"></i> Science Group</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Courses Section -->
+    <section id="certifications">
+        <h2 class="section-title">Certifications & Courses</h2>
+        <div class="project-grid">
+            <!-- Cert 1 -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Python for Everybody</h3>
+                    <p>A comprehensive specialization covering Python basics and data structures.</p>
+                    <p><strong>Provider:</strong> Coursera</p>
+                </div>
+            </div>
+            <!-- Cert 2 -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Web Development Bootcamp</h3>
+                    <p>Learned HTML, CSS, JavaScript and React fundamentals.</p>
+                    <p><strong>Provider:</strong> Udemy</p>
+                </div>
+            </div>
+            <!-- Cert 3 -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>C++ Problem Solving</h3>
+                    <p>Advanced algorithmic problem solving using C++.</p>
+                    <p><strong>Provider:</strong> Online Judge</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-tag">C Programming</div>
+            <div class="skill-tag">C++</div>
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">HTML5</div>
+            <div class="skill-tag">CSS3</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">React</div>
+            <div class="skill-tag">Git & GitHub</div>
+            <div class="skill-tag">MS Office</div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Recent Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>A responsive personal portfolio website designed to showcase my academic journey and technical skills.</p>
+                    <p><strong>Tech Stack:</strong> HTML5, CSS3</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Student Management System</h3>
+                    <p>A console-based application developed to manage student records efficiently using file handling.</p>
+                    <p><strong>Tech Stack:</strong> C / C++</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Personal Blog Site</h3>
+                    <p>A simple blog layout template created with pure CSS Grid and Flexbox.</p>
+                    <p><strong>Tech Stack:</strong> HTML, CSS</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> 2022100000080@seu.edu.bd</p>
+                <p><i class="fas fa-phone"></i> +880 1405-862690</p>
+                <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+            </div>
+            <br>
+            <a href="mailto:2022100000080@seu.edu.bd" class="btn">Send Email</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Md. Maruf Sarker. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
